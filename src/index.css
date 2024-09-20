@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(#f0f6f8, #e0e1e7);
+}
+
+main {
+  width: 90%;
+  max-width: 40rem;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #e9ecef;
+  color: rgb(30, 55, 90);
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: #495057;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #495057;
+}
+
+input {
+  font: inherit;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+  border: 2px solid  #495057;
+  border-radius: 4px;
+}
+
+select {
+  font: inherit;
+  width: 100%;
+  padding: 0.5rem;
+  color: #495057 ;
+  /* font-weight: bold; */
+  background-color: #f8f9fa;
+  border: 2px solid  #495057;
+  border-radius: 4px;
+}
+
+form button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  background-color: #495057;
+  border: none;
+  border-radius: 4px;
+  font: inherit;
+  font-weight: bold;
+  outline: 2px solid black;
+  color: white;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #343a40;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+li {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 2px solid  #B81B0E;
+  /* border: 2px solid #F7B500 */
+  /* border: 2px solid #549C30; */
+  box-shadow: 0 0 5px #B81B0E;
+}
+
+li article {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+li h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  /* color: #343a40; */
+ color: #495057;
+}
+
+li p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #dfd9be;
+}
+
+li button {
+  font: inherit;
+  padding: 0 0.5rem;
+  background: transparent;
+  border: none;
+  color: #909a9a;
+  cursor: pointer;
+}
+
+li button:hover {
+  color: #343a40;
+}
+
+.fallback {
+  text-align: center;
+  color: #acd1ce;
+}
