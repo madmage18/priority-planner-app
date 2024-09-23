@@ -61,18 +61,27 @@ input {
   border-radius: 4px;
 }
 
+.radio-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.radio-group {
+  margin-right: 20px;
+}
+
 select {
   font: inherit;
   width: 100%;
   padding: 0.5rem;
   color: #495057 ;
-  /* font-weight: bold; */
   background-color: #f8f9fa;
   border: 2px solid  #495057;
   border-radius: 4px;
 }
 
-form button {
+.primary-form-button {
   display: block;
   width: 100%;
   padding: 0.75rem;
@@ -87,11 +96,29 @@ form button {
   cursor: pointer;
 }
 
-form button:hover {
+.primary-form-button:hover {
   background-color: #343a40;
 }
 
-ul {
+.secondary-form-button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: #909a9a;
+  cursor: pointer;
+}
+
+.secondary-form-button:hover {
+  color: #343a40;
+}
+
+.grid-container {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -100,7 +127,7 @@ ul {
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 
-li {
+.grid-item {
   background-color: #f8f9fa;
   padding: 1rem;
   border-radius: 6px;
@@ -108,6 +135,71 @@ li {
   /* border: 2px solid #F7B500 */
   /* border: 2px solid #549C30; */
   box-shadow: 0 0 5px #B81B0E;
+  margin-bottom: 1rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagination-button {
+  padding: 0.75rem;
+  margin-top: 1rem;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: #909a9a;
+  cursor: pointer;
+}
+
+.secondary-form-button:hover {
+  color: #343a40;
+}
+
+.NotStarted {
+  box-shadow: 0 0 5px #B81B0E;
+  border: 2px solid  #B81B0E;
+}
+
+.InProgress {
+  box-shadow: 0 0 5px #F7B500 ;
+  border: 2px solid  #F7B500 ;
+}
+
+.Completed {
+  box-shadow: 0 0 5px #549C30 ;
+  border: 2px solid  #549C30 ;
+}
+
+input:invalid + span::after {
+  content: " ✖ You used an invalid date. Use the date picker to select a valid date.";
+}
+
+input:valid + span::after {
+  content: " ✓";
+}
+
+
+.column-title {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 li article {
@@ -119,7 +211,6 @@ li article {
 li h2 {
   margin: 0;
   font-size: 1.25rem;
-  /* color: #343a40; */
  color: #495057;
 }
 

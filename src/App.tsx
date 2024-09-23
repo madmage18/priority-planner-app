@@ -1,47 +1,54 @@
-import { useState } from "react";
-import { PriorityProps } from "./components/Priority.tsx";
-import PriorityList from "./components/PriorityList.tsx";
+import { useState, useRef } from "react";
+import { PriorityProps } from "./types/interfaces.ts";
+import { getDatesInWeek } from "./utils/dateutils.ts";
+import {
+  updatePlannerWeek,
+  handleDeletePriority,
+  handleAddPriority,
+} from "./utils/stateutils.ts";
+import Planner from "./components/Planner.tsx";
+import Pagination from "./components/Pagination.tsx";
 import Header from "./components/Header.tsx";
+import NewPriority from "./components/NewPriority.tsx";
 import stoplightJpg from "./assets/stoplight.jpg";
 
-import NewPriority from "./components/NewPriority.tsx";
-
 export default function App() {
-  const [priorities, setPriorities] = useState<PriorityProps[]>([]);
+  const datesInCurrentWeek: string[] = getDatesInWeek();
 
-  function handleAddPriority(
-    priority: string,
-    description: string,
-    date: string,
-    status: string
-  ) {
-    // new state depends on the old state. Using ((old state) => {new state})
-    setPriorities((prevPriorities) => {
-      const newPriority: PriorityProps = {
-        id: Math.random(),
-        children: description,
-        priority: priority,
-        status: status,
-        date: date,
-        onDelete: handleDeletePriority,
-      };
-      return [...prevPriorities, newPriority];
-    });
-  }
-  function handleDeletePriority(id: number) {
-    // updating state via filter method
-    setPriorities((prevPriorities) =>
-      prevPriorities.filter((priority) => priority.id !== id)
-    );
-  }
+  const [priorities, setPriorities] = useState<PriorityProps[]>([]);
+  const [plannerWeek, setPlannerWeek] = useState<string[]>(datesInCurrentWeek);
+
+  const weeklyPlannerHTML = useRef<HTMLDivElement>(null);
 
   return (
-    <main>
-      <Header image={{ src: stoplightJpg, alt: "A list of priorities" }}>
-        <h1>Priority Planner</h1>
-      </Header>
-      <NewPriority onAddPriority={handleAddPriority} />
-      <PriorityList onDelete={handleDeletePriority} priorities={priorities} />
-    </main>
+    <>
+      <div>
+        <main>
+          <Header image={{ src: stoplightJpg, alt: "A list of priorities" }}>
+            <h1>Priority Planner</h1>
+          </Header>
+          <NewPriority
+            weeklyPlannerHTML={weeklyPlannerHTML}
+            onAddPriority={handleAddPriority}
+            setPriorities={setPriorities}
+          />
+        </main>
+        <div className="pagination">
+          <Pagination
+            updatePlannerWeek={updatePlannerWeek}
+            plannerWeek={plannerWeek}
+            setPlannerWeek={setPlannerWeek}
+          />
+        </div>
+        <div className="planner" ref={weeklyPlannerHTML}>
+          <Planner
+            priorities={priorities}
+            plannerWeek={plannerWeek}
+            onDelete={handleDeletePriority}
+            setPriorities={setPriorities}
+          />
+        </div>
+      </div>
+    </>
   );
 }

@@ -1,12 +1,4 @@
-import { type ReactNode } from "react";
-export interface PriorityProps {
-  priority: string;
-  date: string;
-  status: string;
-  children: ReactNode;
-  id: number;
-  onDelete: (id: number) => void;
-}
+import { PriorityProps } from "../types/interfaces.ts";
 
 export function Priority({
   priority,
@@ -14,6 +6,7 @@ export function Priority({
   status,
   children,
   onDelete,
+  setPriorities,
   id,
 }: PriorityProps) {
   return (
@@ -24,7 +17,7 @@ export function Priority({
         <p>{date}</p>
         <span>{status}</span>
       </div>
-      <button onClick={() => onDelete(id)}>Delete</button>
+      <button onClick={() => onDelete({ id, setPriorities })}>Delete</button>
     </article>
   );
 }
