@@ -18,9 +18,9 @@ export default function Planner({
 
           {priorities ? (
             priorities.map((priority) => (
-              <>
+              <div key={priority.id}>
                 {priority.date === date && (
-                  <li
+                  <div
                     key={priority.id}
                     className={`${priority.status.replace(
                       /\s+/g,
@@ -37,9 +37,9 @@ export default function Planner({
                     >
                       {priority.children}
                     </Priority>
-                  </li>
+                  </div>
                 )}
-              </>
+              </div>
             ))
           ) : (
             <></>

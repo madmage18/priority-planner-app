@@ -13,6 +13,7 @@ export default function NewPriority({
   const description = useRef<HTMLInputElement>(null);
   const date = useRef<HTMLInputElement>(null);
   const [selectedStatus, setSelectedStatus] = useState<string>("Not Started");
+  const downloadString: string = "\u2B73  Download Current Week as PDF";
 
   const handleStatusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedStatus(event.target!.value);
@@ -27,7 +28,6 @@ export default function NewPriority({
     const formattedDate = convertToDisplayDate(enteredDate); //display format 9/17/2024
 
     const enteredStatus = selectedStatus;
-
     event.currentTarget.reset();
 
     onAddPriority({
@@ -41,23 +41,21 @@ export default function NewPriority({
 
   function handleDownloadPriorities() {
     const weeklyPlannerHTMLNode: HTMLDivElement = weeklyPlannerHTML!.current!;
-
-    html2canvas(weeklyPlannerHTMLNode).then((canvas) => {
-      let imgData = canvas.toDataURL("image/png");
-      let pdf = new jsPDF("landscape", "mm", "a4");
-      let imgWidth = 297; // A4 width in mm for landscape
-      let pageHeight = 210; // A4 height in mm for landscape
-      let imgHeight = (canvas.height * imgWidth) / canvas.width;
+    html2canvas(weeklyPlannerHTMLNode, { scale: 2 }).then((canvas) => {
+      const imgData = canvas.toDataURL("image/jpeg");
+      const pdf = new jsPDF("landscape", "mm", "a4");
+      const imgWidth = 297; // A4 width in mm for landscape
+      const pageHeight = 210; // A4 height in mm for landscape
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
       let heightLeft = imgHeight;
       let position = 0;
 
-      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+      pdf.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight);
       heightLeft -= pageHeight;
-
       while (heightLeft >= 0) {
         position = heightLeft - imgHeight;
         pdf.addPage();
-        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+        pdf.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
 
@@ -127,7 +125,7 @@ export default function NewPriority({
         className="secondary-form-button"
         onClick={handleDownloadPriorities}
       >
-        Download Current Week as PDF
+        {downloadString}
       </button>
     </>
   );
