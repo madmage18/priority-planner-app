@@ -1,5 +1,5 @@
 import { useRef, useState, type FormEvent } from "react";
-import html2canvas from "html2canvas";
+import domtoimage from "dom-to-image";
 import jsPDF from "jspdf";
 import { NewPriorityProps } from "../types/interfaces";
 import { convertToDisplayDate } from "../utils/dateutils";
@@ -41,26 +41,34 @@ export default function NewPriority({
 
   function handleDownloadPriorities() {
     const weeklyPlannerHTMLNode: HTMLDivElement = weeklyPlannerHTML!.current!;
-    html2canvas(weeklyPlannerHTMLNode, { scale: 2 }).then((canvas) => {
-      const imgData = canvas.toDataURL("image/jpeg");
-      const pdf = new jsPDF("landscape", "mm", "a4");
-      const imgWidth = 297; // A4 width in mm for landscape
-      const pageHeight = 210; // A4 height in mm for landscape
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
-      let position = 0;
+    domtoimage
+      .toPng(weeklyPlannerHTMLNode)
+      .then((dataUrl) => {
+        const pdf = new jsPDF("landscape", "mm", "a4");
+        const imgWidth = 297; // A4 width in mm for landscape
+        const pageHeight = 210; // A4 height in mm for landscape
+        const img = new Image();
+        img.src = dataUrl;
+        img.onload = () => {
+          const imgHeight = (img.height * imgWidth) / img.width;
+          let heightLeft = imgHeight;
+          let position = 0;
 
-      pdf.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
+          pdf.addImage(img, "PNG", 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+          while (heightLeft >= 0) {
+            position = heightLeft - imgHeight;
+            pdf.addPage();
+            pdf.addImage(img, "PNG", 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+          }
 
-      pdf.save("download.pdf"); //Download PDF
-    });
+          pdf.save("priority-planner-week.pdf"); // Download PDF
+        };
+      })
+      .catch((error) => {
+        console.error("Error generating image:", error);
+      });
   }
 
   return (
@@ -93,7 +101,7 @@ export default function NewPriority({
             />
             <label htmlFor="notStarted">Not Started</label>
           </div>
-          <p className="radio-group">
+          <div className="radio-group">
             <input
               type="radio"
               id="inProgress"
@@ -103,8 +111,8 @@ export default function NewPriority({
               onChange={handleStatusChange}
             />
             <label htmlFor="inProgress">In Progress</label>
-          </p>
-          <p className="radio-group">
+          </div>
+          <div className="radio-group">
             <input
               type="radio"
               id="completed"
@@ -114,7 +122,7 @@ export default function NewPriority({
               onChange={handleStatusChange}
             />
             <label htmlFor="completed">Completed</label>
-          </p>
+          </div>
         </div>
         <p>
           <button className="primary-form-button">Add Priority</button>

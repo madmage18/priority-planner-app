@@ -63,7 +63,6 @@ input {
 
 .radio-form {
   display: flex;
-  align-items: center;
   justify-content: space-around;
 }
 
@@ -131,6 +130,9 @@ select {
   background-color: #f8f9fa;
   padding: 1rem;
   border-radius: 6px;
+}
+
+.priority-margin {
   margin-bottom: 1rem;
 }
 
@@ -159,27 +161,44 @@ select {
   color: #343a40;
 }
 
-.NotStarted {
+.not-started {
   box-shadow: 0 0 5px #B81B0E;
   border: 2px solid  #B81B0E;
 }
 
-.InProgress {
+.in-progress {
   box-shadow: 0 0 5px #F7B500 ;
   border: 2px solid  #F7B500 ;
 }
 
-.Completed {
+.completed {
   box-shadow: 0 0 5px #549C30 ;
   border: 2px solid  #549C30 ;
 }
 
+.not-started-p {
+  color: #B81B0E;
+}
+
+.in-progress-p {
+  color: #F7B500 ;
+}
+
+.completed-p {
+  color: #549C30 ;
+}
+
+
 input:invalid + span::after {
-  content: " ✖ You used an invalid date. Use the date picker to select a valid date.";
+  content: " ✖ Use the date picker to select a valid date.";
 }
 
 input:valid + span::after {
   content: " ✓";
+}
+
+input:focus {
+  outline-color: rgb(229, 151, 0);
 }
 
 .column-title {
@@ -221,7 +240,6 @@ input:valid + span::after {
 .grid-item p {
   margin: 0;
   font-size: 0.85rem;
-  color: #dfd9be;
 }
 
 .grid-item button {

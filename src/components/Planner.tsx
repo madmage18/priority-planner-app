@@ -18,14 +18,13 @@ export default function Planner({
 
           {priorities ? (
             priorities.map((priority) => (
-              <div key={priority.id}>
+              <div key={priority.id} className="priority-margin">
                 {priority.date === date && (
                   <div
                     key={priority.id}
-                    className={`${priority.status.replace(
-                      /\s+/g,
-                      ""
-                    )} grid-item`}
+                    className={`${priority.status
+                      .replace(/\s+/g, "-")
+                      .toLowerCase()} grid-item`}
                   >
                     <Priority
                       priority={priority.priority}

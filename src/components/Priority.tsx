@@ -35,7 +35,9 @@ export function Priority({
           <h2>{priority}</h2>
           {children}
         </div>
-        <p>{date}</p>
+        <p className={`${status.replace(/\s+/g, "-").toLowerCase()}-p`}>
+          {date}
+        </p>
         {/* <span>{status}</span> */}
         <button className="status-button" onClick={() => toggleStatus(id)}>
           {status}
