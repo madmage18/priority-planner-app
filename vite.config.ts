@@ -11,8 +11,5 @@ export default defineConfig({
     port: Number(process.env.PORT) || 3000,
     host: "0.0.0.0", // Ensure the server is accessible externally
     strictPort: true, // Fail if the port is already in use
-    hmr: {
-      // timeout: 30000, // Increase timeout for hot module replacement
-    },
   },
 });
