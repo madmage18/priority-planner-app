@@ -1,13 +1,5 @@
 import { type ReactNode } from "react";
 
-export interface HeaderProps {
-  image: {
-    src: string;
-    alt: string;
-  };
-  children: ReactNode;
-}
-
 export interface PaginationProps {
   plannerWeek: string[];
   updatePlannerWeek: ({
@@ -41,7 +33,6 @@ export interface NewPriorityProps {
     status,
     setPriorities,
   }: AddPriorityProps) => void;
-  weeklyPlannerHTML: React.RefObject<HTMLDivElement>;
   setPriorities: React.Dispatch<React.SetStateAction<PriorityProps[]>>;
 }
 
@@ -57,9 +48,18 @@ export interface AddPriorityProps {
   status: string;
   setPriorities: React.Dispatch<React.SetStateAction<PriorityProps[]>>;
 }
+
+export interface ToggleStatusProps {
+  id: number;
+  setPriorities: React.Dispatch<React.SetStateAction<PriorityProps[]>>;
+}
 export interface PlannerProps {
   priorities: PriorityProps[];
   plannerWeek: string[];
   onDelete: ({ id, setPriorities }: onDeleteProps) => void;
   setPriorities: React.Dispatch<React.SetStateAction<PriorityProps[]>>;
+}
+
+export interface DownloadButtonProps {
+  weeklyPlannerHTML: React.RefObject<HTMLDivElement>;
 }

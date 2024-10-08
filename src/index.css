@@ -137,7 +137,8 @@ select {
 }
 
 .planner {
-  padding: 0 .75rem 0 .75rem;
+  padding: 0.5rem 0.75rem 0 0.75rem;
+ 
 }
 
 .pagination {
@@ -146,7 +147,7 @@ select {
 }
 
 .pagination-button {
-  padding: 0.75rem;
+  padding: 0.75rem 0.75rem 0.25rem 0.75rem; 
   margin-top: 1rem;
   font: inherit;
   font-weight: bold;
@@ -155,6 +156,10 @@ select {
   border: none;
   color: #909a9a;
   cursor: pointer;
+}
+
+.pagination-button:hover {
+  color: #343a40;
 }
 
 .secondary-form-button:hover {

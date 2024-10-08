@@ -1,4 +1,5 @@
 import { PriorityProps } from "../types/interfaces.ts";
+import { toggleStatus } from "../utils/stateutils.ts";
 
 export function Priority({
   priority,
@@ -9,25 +10,6 @@ export function Priority({
   setPriorities,
   id,
 }: PriorityProps) {
-  function toggleStatus(id: number) {
-    setPriorities((prevPriorities) =>
-      prevPriorities.map((priority) => {
-        if (priority.id == id) {
-          let newStatus;
-          if (priority.status === "Not Started") {
-            newStatus = "In Progress";
-          } else if (priority.status === "In Progress") {
-            newStatus = "Completed";
-          } else {
-            newStatus = "Not Started";
-          }
-          return { ...priority, status: newStatus };
-        }
-        return priority;
-      })
-    );
-  }
-
   return (
     <article>
       <div>
@@ -38,11 +20,15 @@ export function Priority({
         <p className={`${status.replace(/\s+/g, "-").toLowerCase()}-p`}>
           {date}
         </p>
-        {/* <span>{status}</span> */}
-        <button className="status-button" onClick={() => toggleStatus(id)}>
+        {/* Clickable 'Status' value on Priority card*/}
+        <button
+          className="status-button"
+          onClick={() => toggleStatus({ id, setPriorities })}
+        >
           {status}
         </button>
       </div>
+      {/* Clickable Delete priority link on Priority card*/}
       <button
         className="delete-button"
         onClick={() => onDelete({ id, setPriorities })}

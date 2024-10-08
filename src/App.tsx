@@ -10,7 +10,7 @@ import Planner from "./components/Planner.tsx";
 import Pagination from "./components/Pagination.tsx";
 import Header from "./components/Header.tsx";
 import NewPriority from "./components/NewPriority.tsx";
-import stoplightJpg from "./assets/stoplight.jpg";
+import DownloadButton from "./components/DownloadButton.tsx";
 
 export default function App() {
   const datesInCurrentWeek: string[] = getDatesInWeek();
@@ -24,14 +24,12 @@ export default function App() {
     <>
       <div>
         <main>
-          <Header image={{ src: stoplightJpg, alt: "A list of priorities" }}>
-            <h1>Priority Planner</h1>
-          </Header>
+          <Header />
           <NewPriority
-            weeklyPlannerHTML={weeklyPlannerHTML}
             onAddPriority={handleAddPriority}
             setPriorities={setPriorities}
           />
+          <DownloadButton weeklyPlannerHTML={weeklyPlannerHTML} />
         </main>
         <div className="pagination">
           <Pagination
