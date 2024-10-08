@@ -1,8 +1,10 @@
 import { memo } from "react";
+import stoplightJpg from "../assets/stoplight.jpg";
+
 function Header() {
   return (
     <header>
-      <img src="/src/assets/stoplight.jpg" alt="A list of priorities" />
+      <img src={stoplightJpg} alt="A list of priorities" />
       <div>
         <h1>Priority Planner</h1>
       </div>
