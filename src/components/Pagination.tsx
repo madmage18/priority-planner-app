@@ -1,7 +1,8 @@
+import { memo } from "react";
 import { convertDateFormat } from "../utils/dateutils.ts";
 import { PaginationProps } from "../types/interfaces.ts";
 
-export default function Pagination({
+function Pagination({
   plannerWeek,
   updatePlannerWeek,
   setPlannerWeek,
@@ -16,7 +17,7 @@ export default function Pagination({
     } else {
       dateWithTimezone.setDate(dateWithTimezone.getDate() - 7);
     }
-
+    // call fn to update 7 day week week shown in the planner. Updates using setPlannerWeek state setter
     updatePlannerWeek({ dateWithTimezone, setPlannerWeek });
   }
 
@@ -37,3 +38,5 @@ export default function Pagination({
     </>
   );
 }
+
+export default memo(Pagination);
