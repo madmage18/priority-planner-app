@@ -14,11 +14,8 @@ Priorities can be added, deleted, updated. Download a PDF of the Apps currently 
 - Add back-end form validations based on database tables or db schema field requirements.
 - Add ability to assign Category to priorities. Allow users to add additional Category options. OOTB Categories: Home, Family, Vacation, Friends, Volunteer/Service, Career.
 - Add ability to preview PDF in browser prior to downloading the PDF. Update name of priority-planner-week.pdf name to include week details. Ex) priority-planner-week-9-22-24.pdf
-- Update download pdf code to format pdf correctly in mobile viewports. (See git issue #1)
 - Add ability to duplicate existing Priority cards.
-- Update grid styling to support down to 320px width.
-- Improve layout of the Priority card Description content.
-- Move all functions within functional components into appropriate ts file within /src/utils.
+- Add ability to update planner week view via date selection. (Extend planner week view navigation)
 
 ## Running App For Development:
 
