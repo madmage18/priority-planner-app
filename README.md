@@ -1,62 +1,93 @@
 # Priority Planner App
 
-Add priorities color-coded by Status to your 7-day planner. Create priorities using the provided form.
+Add color-coded priorities by Status to a 7-day planner via a form. Navigate weeks using pagination, toggle Status colors, and manage priorities in a responsive grid (supports down to 370px).
+Download displayed 7-day planner weeks with priorities as a PDF.
 
-Planner loads showing the current 7-day week. User can view Next/Previous weeks in the planner using pagination. Priorities appear underneath the assigned date in the planner. Users can toggle the Status/status color of the priority by clicking the Status value on the Priority cards.
-
-7-day planner uses responsive grid design. (Supports down to 370px viewport width.)
-
-Priorities can be added, deleted, updated. Download a PDF of the Apps currently displayed 7-day week with priorities using the Download button.
-
-<b>Future Enhancements:</b>
-
-- Add data persistence with addition of database. Add Dockerfile and add docker compose.yaml to support required additional layers.
-- Add back-end form validations based on database tables or db schema field requirements.
-- Add ability to assign Category to priorities. Allow users to add additional Category options. OOTB Categories: Home, Family, Vacation, Friends, Volunteer/Service, Career.
-- Add ability to preview PDF in browser prior to downloading the PDF. Update name of priority-planner-week.pdf name to include week details. Ex) priority-planner-week-9-22-24.pdf
-- Add ability to duplicate existing Priority cards.
-- Add ability to update planner week view via date selection. (Extend planner week view navigation)
+<b>Main branch deployed at:</b> https://y-lilac-two.vercel.app/
+<br><br>
 
 ## Running App For Development:
 
-PreRequisites:
+<b>PreRequisites:</b>
 Node version 20.X.X
 
 - Clone project to local machine.
 
-- Run the following commands
-  `npm install`
-  `npm run dev`
+- Run the following commands:
+
+  ```bash
+  npm install
+  npm run dev
+  ```
+
 - Hit the specified http://localhost:5173 in your browser
-  Example:
+  <br>Example Output:
 
-```bash
-$ npm run dev
-> react-ts-basics@0.0.0 dev
-> vite
-  VITE v4.5.5  ready in 622 ms
+  ```bash
+  $ npm run dev
+  > react-ts-basics@0.0.0 dev
+  > vite
+    VITE v4.5.5  ready in 622 ms
 
-  ➜  Local:   http://localhost:5173/
-  ➜  Network: use --host to expose
-```
+    ➜  Local:   http://localhost:5173/
+    ➜  Network: use --host to expose
+  ```
 
-Adding Features - Best Practice:
+<b>Adding Features - Best Practice:</b>
 
 - Branch from main branch. Create new branches following `feature/<SHORT_FEATURE_DESCRIPTION>` naming convention.
-- Add feature to your branch
+- Add feature to your branch.
 - Format files. VSCode Prettier extension is being used to format all ts/tsx files.
 - Resolve linting errors prior to commit. Use `npm run lint`
 - Push branch to origin and submit MR to the main branch. Include description of feature and how to test it.
+  <br><br>
 
-## Testing current application:
+## Build and Deploy:
 
 ### Production build
 
 - Clone project to local machine.
-- Run the following commands
+- Run the following commands:
 
-  `npm install`
-  `npm build`
+  ```bash
+  npm install
+  npm run build
+  ```
+
+- Validate production build
+
+### Deployments - Steps using Heroku, Vercel
+
+#### Heroku
+
+- Clone project locally
+- Run `npm install` `npm run build` in root of project. Confirm build success
+- Check for Heroku CLI using `heroku --version`. If not installed use install step for your OS listed below:
+  - Install Heroku CLI to linux/macOS via command: `curl https://cli-assets.heroku.com/install.sh | sh`. <br>
+  - Install Heroku CLI to Windows via installer: https://devcenter.heroku.com/articles/heroku-cli?formCode=MG0AV3#install-the-heroku-cli
+- In root of project run `heroku create` to create heroku app.
+- Deploy main branch to app `git push heroku main` or map another branch to main branch to deploy to app via `git push heroku <YOUR_BRANCH_NAME>:main`
+- Hit URL for deployed app to validate.
+
+#### Vercel
+
+- Run command `vercel --version` to confirm Vercel CLI is installed. Run `npm install -g vercel` if not installed.
+- Run `vercel login`. Login to Vercel account as prompted.
+- Run `vercel` to deploy project. Follow prompts in CLI to provide required deployment configs.
+- Hit URL for deployed app to validate.
+
+<b>Example:</b> https://y-lilac-two.vercel.app/
+<br>
+
+## Future Enhancements:
+
+- Add data persistence with addition of database. Add Dockerfile and add docker compose.yaml for Docker build/image
+- Add back-end form validations based on future database tables or db schema field requirements.
+- Add ability to assign Category to priorities. Allow users to add additional Category options. OOTB Categories: Home, Family, Vacation, Friends, Volunteer/Service, Career.
+- Add ability to preview PDF in browser prior to downloading the PDF. Update name of priority-planner-week.pdf name to include week details. Ex) priority-planner-week-9-22-24.pdf
+- Add ability to duplicate existing Priority cards.
+- Add ability to update planner week view via date selection. Extend planner weeks pagination/view navigation
+  <br><br>
 
 # React + TypeScript + Vite
 
