@@ -25,7 +25,12 @@ export default function Planner({
           role="region"
           aria-labelledby={`section-${date.replace(/\//g, "-")}`}
         >
-          <div id={date} key={date} role="header" className="column-title">
+          <div
+            id={`section-${date.replace(/\//g, "-")}`}
+            key={date}
+            role="heading"
+            className="column-title"
+          >
             {getDayName(i)}:<div>{date}</div>
           </div>
           {/* renders priorities for specific date */}

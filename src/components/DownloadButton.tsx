@@ -11,8 +11,10 @@ function DownloadButton({ weeklyPlannerHTML }: DownloadButtonProps) {
         className="secondary-form-button"
         onClick={() => handleDownloadPriorities({ weeklyPlannerHTML })}
       >
-        <span>
-          <img src={downloadPng} alt="Download" className="button-icon"></img>
+        <img src={downloadPng} alt="Download" className="button-icon"></img>
+        <span className="sr-only">
+          Download icon created by Pixel perfect - Flaticon from
+          https://www.flaticon.com/free-icons/download
         </span>
         Download Current Week as PDF
       </button>
