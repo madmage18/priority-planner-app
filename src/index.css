@@ -44,6 +44,12 @@ header h1 {
   color: #495057;
 }
 
+h2 {
+  color: #343a40;
+  margin: 0 0 16px 0;
+  font-weight: 200;
+}
+
 label {
   display: block;
   font-size: 0.85rem;
