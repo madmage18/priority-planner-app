@@ -39,7 +39,7 @@ Node version 20.X.X
 - Add feature to your branch.
 - Format files. VSCode Prettier extension is being used to format all ts/tsx files.
 - Resolve linting errors prior to commit. Use `npm run lint`
-- Push branch to origin and submit MR to the main branch. Include description of feature and how to test it.
+- Push branch to origin and submit Pull Request to the main branch. Include description of feature and how to test it.
   <br><br>
 
 ## Build and Deploy:
