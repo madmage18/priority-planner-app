@@ -6,7 +6,6 @@ export default function handleDownloadPriorities({
   weeklyPlannerHTML,
 }: DownloadButtonProps) {
   const weeklyPlannerHTMLNode: HTMLDivElement = weeklyPlannerHTML!.current!;
-  const originalWidth = weeklyPlannerHTMLNode.style.width;
 
   if (weeklyPlannerHTMLNode.getBoundingClientRect().width < 1887) {
     // Temporarily set width to 1887px for pdf formatting
@@ -36,13 +35,11 @@ export default function handleDownloadPriorities({
         }
 
         pdf.save("priority-planner-week.pdf"); // Downloads PDF
-        // Restore original width
-        weeklyPlannerHTMLNode.style.width = originalWidth;
+        weeklyPlannerHTMLNode.style.removeProperty("width"); // Restore responsive width. Remove any inline width styling for pdf formatting
       };
     })
     .catch((error) => {
       console.error("Error generating image:", error);
-      // Restore original width in case of an error
-      weeklyPlannerHTMLNode.style.width = originalWidth;
+      weeklyPlannerHTMLNode.style.removeProperty("width"); // Restore responsive width in case of an error
     });
 }

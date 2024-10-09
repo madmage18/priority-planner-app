@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { PriorityProps } from "./types/interfaces.ts";
-import { getDatesInWeek } from "./utils/dateutils.ts";
+import { getDatesInCurrentWeek } from "./utils/dateutils.ts";
 import {
   updatePlannerWeek,
   handleDeletePriority,
@@ -13,10 +13,10 @@ import NewPriority from "./components/NewPriority.tsx";
 import DownloadButton from "./components/DownloadButton.tsx";
 
 export default function App() {
-  const datesInCurrentWeek: string[] = getDatesInWeek();
-
   const [priorities, setPriorities] = useState<PriorityProps[]>([]);
-  const [plannerWeek, setPlannerWeek] = useState<string[]>(datesInCurrentWeek);
+  const [plannerWeek, setPlannerWeek] = useState<string[]>(
+    getDatesInCurrentWeek()
+  );
 
   const weeklyPlannerHTML = useRef<HTMLDivElement>(null);
 
@@ -31,13 +31,13 @@ export default function App() {
           />
           <DownloadButton weeklyPlannerHTML={weeklyPlannerHTML} />
         </main>
-        <div className="pagination">
+        <nav className="pagination" role="navigation" aria-label="pagination">
           <Pagination
             updatePlannerWeek={updatePlannerWeek}
             plannerWeek={plannerWeek}
             setPlannerWeek={setPlannerWeek}
           />
-        </div>
+        </nav>
         <div className="planner" ref={weeklyPlannerHTML}>
           <Planner
             priorities={priorities}

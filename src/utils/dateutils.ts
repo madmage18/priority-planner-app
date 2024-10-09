@@ -1,4 +1,4 @@
-export function getDatesInWeek() {
+export function getDatesInCurrentWeek() {
   const now = new Date(); // current date
   const dayOfWeek = now.getDay(); // 0 (Sunday) to 6 (Saturday)
 

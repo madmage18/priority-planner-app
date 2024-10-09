@@ -1,17 +1,20 @@
 import { memo } from "react";
 import { DownloadButtonProps } from "../types/interfaces.tsx";
 import handleDownloadPriorities from "../utils/downloadutils.ts";
+import downloadPng from "../assets/download-icon.png";
 
 function DownloadButton({ weeklyPlannerHTML }: DownloadButtonProps) {
-  const downloadString: string = "\u2B73  Download Current Week as PDF";
-
   return (
     <>
       <button
+        aria-labelledby="download-pdf"
         className="secondary-form-button"
         onClick={() => handleDownloadPriorities({ weeklyPlannerHTML })}
       >
-        {downloadString}
+        <span>
+          <img src={downloadPng} alt="Download" className="button-icon"></img>
+        </span>
+        Download Current Week as PDF
       </button>
     </>
   );

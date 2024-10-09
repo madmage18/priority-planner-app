@@ -24,12 +24,14 @@ function Pagination({
   return (
     <>
       <button
+        aria-labelledby="pagination-button-previous-week"
         className="pagination-button"
         onClick={() => handleUpdatePage(false, plannerWeek)}
       >
         {`< Previous Week`}
       </button>
       <button
+        aria-labelledby="pagination-button-next-week"
         className="pagination-button"
         onClick={() => handleUpdatePage(true, plannerWeek)}
       >

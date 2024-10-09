@@ -100,7 +100,7 @@ select {
 }
 
 .secondary-form-button {
-  display: block;
+  display: block;  
   width: 100%;
   padding: 0.75rem;
   margin-top: 1rem;
@@ -109,12 +109,20 @@ select {
   cursor: pointer;
   background: transparent;
   border: none;
-  color: #909a9a;
+  color: #4A4F4F;
   cursor: pointer;
 }
 
 .secondary-form-button:hover {
   color: #343a40;
+  outline: 2px solid #343a40;
+  border-radius: 4px; 
+}
+
+.button-icon {
+  height: .9em; 
+  width: 1.1em;
+  margin-right: 4px;
 }
 
 .grid-container {
@@ -138,7 +146,6 @@ select {
 
 .planner {
   padding: 0.5rem 0.75rem 0 0.75rem;
- 
 }
 
 .pagination {
@@ -154,12 +161,15 @@ select {
   cursor: pointer;
   background: transparent;
   border: none;
-  color: #909a9a;
+  color: #4A4F4F;;
   cursor: pointer;
 }
 
 .pagination-button:hover {
   color: #343a40;
+  text-decoration: underline;
+  text-decoration-color: #343a40;
+  text-decoration-thickness: 3px ;  
 }
 
 .secondary-form-button:hover {
@@ -192,7 +202,6 @@ select {
 .completed-p {
   color: #549C30 ;
 }
-
 
 input:invalid + span::after {
   content: " ✖ Use the date picker to select a valid date.";
