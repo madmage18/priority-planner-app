@@ -12,8 +12,8 @@ export function Priority({
 }: PriorityProps) {
   return (
     <article>
-      <div>
-        <div className="grid-item-header">
+      <section>
+        <div role="header" className="grid-item-header">
           <h2>{priority}</h2>
           {children}
         </div>
@@ -27,7 +27,7 @@ export function Priority({
         >
           {status}
         </button>
-      </div>
+      </section>
       {/* Clickable Delete priority link on Priority card*/}
       <button
         className="delete-button"

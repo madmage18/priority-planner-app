@@ -6,11 +6,8 @@ export default function handleDownloadPriorities({
   weeklyPlannerHTML,
 }: DownloadButtonProps) {
   const weeklyPlannerHTMLNode: HTMLDivElement = weeklyPlannerHTML!.current!;
-  const originalWidth = weeklyPlannerHTMLNode.style.width;
-
   if (weeklyPlannerHTMLNode.getBoundingClientRect().width < 1887) {
-    // Temporarily set width to 1887px for pdf formatting
-    weeklyPlannerHTMLNode.style.width = "1887px";
+    weeklyPlannerHTMLNode.style.width = "1887px"; // Temporarily set width to 1887px for pdf formatting
   }
 
   domtoimage
@@ -26,23 +23,25 @@ export default function handleDownloadPriorities({
         let heightLeft = imgHeight;
         let position = 0;
 
-        pdf.addImage(img, "PNG", 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-        while (heightLeft >= 0) {
-          position = heightLeft - imgHeight;
-          pdf.addPage();
+        const addImageToPDF = () => {
           pdf.addImage(img, "PNG", 0, position, imgWidth, imgHeight);
           heightLeft -= pageHeight;
+          position = heightLeft - imgHeight;
+        };
+
+        addImageToPDF();
+
+        while (heightLeft >= 0) {
+          pdf.addPage(); // adds additional PDF page for image content not fitting on prior page
+          addImageToPDF();
         }
 
         pdf.save("priority-planner-week.pdf"); // Downloads PDF
-        // Restore original width
-        weeklyPlannerHTMLNode.style.width = originalWidth;
+        weeklyPlannerHTMLNode.style.removeProperty("width"); // Restore responsive width. Remove any inline width styling for pdf formatting
       };
     })
     .catch((error) => {
       console.error("Error generating image:", error);
-      // Restore original width in case of an error
-      weeklyPlannerHTMLNode.style.width = originalWidth;
+      weeklyPlannerHTMLNode.style.removeProperty("width"); // Restore responsive width in case of an error
     });
 }

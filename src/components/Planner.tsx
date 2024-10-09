@@ -18,10 +18,22 @@ export default function Planner({
     <div className="grid-container">
       {/* renders grid sections for each day in 7 day planner week */}
       {plannerWeek.map((date, i) => (
-        <div className="grid-section" id={date} key={date}>
-          <li id={date} key={date} className="column-title">
-            {getDayName(i)}:<div>{date}</div>
-          </li>
+        <section
+          className="grid-section"
+          id={date}
+          key={date}
+          role="region"
+          aria-labelledby={`section-${date.replace(/\//g, "-")}`}
+        >
+          <h2
+            id={`section-${date.replace(/\//g, "-")}`}
+            key={date}
+            role="heading"
+            className="column-title"
+          >
+            <b>{getDayName(i)}:</b>
+            <div>{date}</div>
+          </h2>
           {/* renders priorities for specific date */}
           {priorities ? (
             getPlannerDayPriorities(date).map((priority) => (
@@ -48,7 +60,7 @@ export default function Planner({
           ) : (
             <></>
           )}
-        </div>
+        </section>
       ))}
     </div>
   );
