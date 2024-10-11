@@ -5,6 +5,14 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // create separate chunks for vendor libraries. Improve app load performance
+          vendor: ["react", "react-dom"],
+        },
+      },
+    },
     chunkSizeWarningLimit: 520,
   },
   server: {
