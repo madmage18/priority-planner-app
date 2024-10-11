@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import { useRef, type FormEvent, memo } from "react";
 import { NewPriorityProps } from "../types/interfaces";
 import { convertToDisplayDate } from "../utils/dateutils";
@@ -10,14 +11,16 @@ function NewPriority({ onAddPriority, setPriorities }: NewPriorityProps) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const enteredPriority = priority.current!.value;
-    const enteredDescription = description.current!.value;
-    const enteredDate = date.current!.value; // input format ex)2024-09-17
+    const enteredPriority = DOMPurify.sanitize(priority.current!.value);
+    const enteredDescription = DOMPurify.sanitize(description.current!.value);
+    const enteredDate = DOMPurify.sanitize(date.current!.value); // input format ex)2024-09-17
 
     const statusOption = event.currentTarget.querySelector(
       'input[name="statusOptions"]:checked'
     ) as HTMLInputElement;
-    const enteredStatus = statusOption ? statusOption.value : "";
+    const enteredStatus = statusOption
+      ? DOMPurify.sanitize(statusOption.value)
+      : "";
 
     const formattedDate = convertToDisplayDate(enteredDate); //display format 9/17/2024
 
