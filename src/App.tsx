@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { PriorityProps } from "./types/interfaces.ts";
 import { getDatesInCurrentWeek } from "./utils/dateutils.ts";
 import {
@@ -13,10 +13,21 @@ import NewPriority from "./components/NewPriority.tsx";
 import DownloadButton from "./components/DownloadButton.tsx";
 
 export default function App() {
-  const [priorities, setPriorities] = useState<PriorityProps[]>([]);
+  const getInitialData = () => {
+    const data: PriorityProps[] = JSON.parse(
+      localStorage.getItem("priorities") || "[]"
+    );
+    return data;
+  };
+
+  const [priorities, setPriorities] = useState<PriorityProps[]>(getInitialData);
   const [plannerWeek, setPlannerWeek] = useState<string[]>(
     getDatesInCurrentWeek()
   );
+
+  useEffect(() => {
+    localStorage.setItem("priorities", JSON.stringify(priorities));
+  }, [priorities]);
 
   const weeklyPlannerHTML = useRef<HTMLDivElement>(null);
 
