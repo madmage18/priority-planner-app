@@ -90,13 +90,14 @@ Node version 20.X.X
 
 ## Future Enhancements:
 
-- Improve performance, Interaction to Next Paint time for event handlers and form inputs. (E.g., use memoized input components and memoize event handlers). Validate updates using Chrome Dev Tools Performace tab and Vercel Interaction Timing
-- Add data persistence with addition of database. Add Dockerfile and add docker compose.yaml for Docker build/image
-- Add back-end form validations based on future database tables or db schema field requirements.
-- Add ability to assign Category to priorities. Allow users to add additional Category options. OOTB Categories: Home, Family, Vacation, Friends, Volunteer/Service, Career.
-- Add ability to preview PDF in browser prior to downloading the PDF. Update name of priority-planner-week.pdf name to include week details. Ex) priority-planner-week-9-22-24.pdf
-- Add ability to duplicate existing Priority cards.
-- Add ability to update planner week view via date selection. Extend planner weeks pagination/view navigation
+- [&nbsp;&nbsp;&nbsp;] Improve performance, Interaction to Next Paint time for event handlers and form inputs. (E.g., use memoized input components and memoize event handlers). Validate updates using Chrome Dev Tools Performace tab and Vercel Interaction Timing
+- [&check;] Add data persistence with addition of database. (Using Local Storage, WebStorage API. May update to Redis)
+- [&nbsp;&nbsp;&nbsp;] Add Dockerfile and add docker compose.yaml for Docker build/image
+- [&nbsp;&nbsp;&nbsp;] Add back-end form validations based on future database tables or db schema field requirements.
+- [&nbsp;&nbsp;&nbsp;] Add ability to assign Category to priorities. Allow users to add additional Category options. OOTB Categories: Home, Family, Vacation, Friends, Volunteer/Service, Career.
+- [&nbsp;&nbsp;&nbsp;] Add ability to preview PDF in browser prior to downloading the PDF. Update name of priority-planner-week.pdf name to include week details. Ex) priority-planner-week-9-22-24.pdf
+- [&nbsp;&nbsp;&nbsp;] Add ability to duplicate existing Priority cards.
+- [&nbsp;&nbsp;&nbsp;] Add ability to update planner week view via date selection. Extend planner weeks pagination/view navigation
   <br><br>
 
 # React + TypeScript + Vite
