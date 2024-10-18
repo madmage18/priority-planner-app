@@ -84,8 +84,6 @@ Node version 20.X.X
 - In root of project run `heroku create` to create heroku app.
 - Deploy main branch to app `git push heroku main` or map another branch to main branch to deploy to app via `git push heroku <YOUR_BRANCH_NAME>:main`
 - Hit URL for deployed app to validate.
-
-<b>Example:</b> https://y-lilac-two.vercel.app/
 <br>
 
 ## Future Enhancements:
